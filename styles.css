@@ -1,0 +1,21 @@
+.draggable {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    position: absolute;
+    cursor: move;
+    z-index: 9;
+
+}
+
+.snap-area {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    margin: 10px;
+}
+
+.snap-area:hover {
+    border: 2px solid red;
+}
