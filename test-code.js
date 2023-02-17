@@ -9,6 +9,13 @@ function initializeDraggables() {
     }
 }
 
+function initializeSnapAreas() {
+    let elements = classElements("snap-area");
+    for(let el in elements) {
+        createSnapArea(el);
+    }
+}
+
 function createDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if(document.getElementById(elmnt.id + "header")) {
@@ -43,7 +50,18 @@ function createDraggable(elmnt) {
     }
 }
 
+function createSnapArea(elmnt) {
+
+    elmnt
+
+    function pageResize() {
+
+    }
+}
+
+
 function start() {
+    initializeSnapAreas();
     initializeDraggables();
 }
 
