@@ -1,33 +1,46 @@
-class Draggable {
-    constructor(element) {
-        this.x1 = 0;
-        this.x2 = 0;
-        this.x3 = 0;
-        this.x4 = 0;
-        this.element = element;
-        this.element.onmousedown = this.dragMouseDown;
-    }
-    dragMouseDown(e) {
-        console.log('mouse down');
+function createDraggable(element) {
+    let x1 = 0;
+    let x2 = 0;
+    let x3 = 0;
+    let x4 = 0;
+    element.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+        element.style.position = "absolute";
+
         e = e || window.event;
         e.preventDefault();
-        this.x3 = e.clientX;
-        this.x4 = e.clientY;
-        document.onmouseup = this.closeMouseDrag;
-        document.onmousemove = this.elementDrag;
+        x3 = e.clientX;
+        x4 = e.clientY;
+        document.onmouseup = closeMouseDrag;
+        document.onmousemove = elementDrag;
     }
-    elementDrag(e) {
-        console.log("dragging");
+    function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        this.x1 = this.x3 - e.clientX;
-        this.x2 = this.x4 - e.clientY;
-        this.x3 = e.clientX;
-        this.x4 = e.clientY;
-        this.element.style.top = (this.element.offsetTop - this.x2) + "px";
-        this.element.style.left = (this.element.offsetLeft - this.x1) + "px";
+        x1 = x3 - e.clientX;
+        x2 = x4 - e.clientY;
+        x3 = e.clientX;
+        x4 = e.clientY;
+        element.style.top = (element.offsetTop - x2) + "px";
+        element.style.left = (element.offsetLeft - x1) + "px";
     }
-    closeMouseDrag() {
+    function snapToArea() {
+        let areas = Utils.classElements("snap-area");
+        for(let a of areas) {
+            let box = a.getBoundingClientRect();
+            if(Utils.isRectPointIntersect(box.left, box.top, box.width, box.height, x3, x4)) {
+                // intersection
+                console.log("intersect");
+                a.appendChild(element);
+                element.style.position = "static";
+                // elements top/left positions need to be set manually
+                //x3 = element.
+            }
+        }
+    }
+    function closeMouseDrag() {
+        snapToArea();
         document.onmouseup = null;
         document.onmousemove = null;
     }

@@ -50,16 +50,6 @@ function createDraggable(elmnt) {
     }
 }
 
-function createSnapArea(elmnt) {
-
-    elmnt
-
-    function pageResize() {
-
-    }
-}
-
-
 function start() {
     initializeSnapAreas();
     initializeDraggables();

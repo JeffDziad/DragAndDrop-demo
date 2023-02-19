@@ -1,21 +1,15 @@
-let draggables = [];
-let snapAreas = [];
-
-function classElements(classId) {
-    return document.getElementsByClassName(classId);
-}
 
 function initializeDraggables() {
-    let elements = classElements("draggable");
+    let elements = Utils.classElements("draggable");
     for(let i = 0; i < elements.length; i++) {
-        draggables.push(new Draggable(elements[i]));
+        createDraggable(elements[i]);
     }
 }
 
 function initializeSnapAreas() {
-    let elements = classElements("snap-area");
-    for(let el in elements) {
-        snapAreas.push(new SnapArea(el));
+    let elements = Utils.classElements("snap-area");
+    for(let el of elements) {
+        createSnapArea(el);
     }
 }
 

@@ -1,5 +1,3 @@
-class SnapArea {
-    constructor(element) {
-        this.element = element;
-    }
+function createSnapArea(element) {
+
 }
