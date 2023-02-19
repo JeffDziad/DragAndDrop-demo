@@ -3,10 +3,14 @@ function createDraggable(element) {
     let x2 = 0;
     let x3 = 0;
     let x4 = 0;
+    let dropX = 0;
+    let dropY = 0;
     element.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
         element.style.position = "absolute";
+        element.style.left = dropX;
+        element.style.top = dropY;
 
         e = e || window.event;
         e.preventDefault();
@@ -31,11 +35,12 @@ function createDraggable(element) {
             let box = a.getBoundingClientRect();
             if(Utils.isRectPointIntersect(box.left, box.top, box.width, box.height, x3, x4)) {
                 // intersection
-                console.log("intersect");
+                console.log("1: ", a.offsetLeft, a.offsetTop);
                 a.appendChild(element);
                 element.style.position = "static";
-                // elements top/left positions need to be set manually
-                //x3 = element.
+                console.log("2: ", a.offsetLeft, a.offsetTop);
+                dropY = a.offsetTop;
+                dropX = a.offsetLeft;
             }
         }
     }
