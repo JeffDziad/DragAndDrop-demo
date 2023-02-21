@@ -8,9 +8,10 @@ function createDraggable(element) {
     element.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
+        console.log(element.getBoundingClientRect().width);
         element.style.position = "absolute";
-        element.style.left = dropX;
-        element.style.top = dropY;
+        element.style.left = (e.clientX - element.getBoundingClientRect().width/2) + "px";
+        element.style.top = (e.clientY - element.getBoundingClientRect().height/2) + "px";
 
         e = e || window.event;
         e.preventDefault();
@@ -39,8 +40,9 @@ function createDraggable(element) {
                 a.appendChild(element);
                 element.style.position = "static";
                 console.log("2: ", a.offsetLeft, a.offsetTop);
-                dropY = a.offsetTop;
-                dropX = a.offsetLeft;
+
+                // dropY = a.offsetTop;
+                // dropX = a.offsetLeft;
             }
         }
     }
