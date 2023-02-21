@@ -9,8 +9,8 @@ class Draggable {
     }
 
     recalibrateLocation() {
-        this.element.style.top = this.element.getBoundingClientRect().top + "px";
-        this.element.style.left = this.element.getBoundingClientRect().left + "px";
+        this.element.style.top = (this.element.getBoundingClientRect().top + window.scrollY) + "px";
+        this.element.style.left = (this.element.getBoundingClientRect().left + window.scrollX) + "px";
     }
 
     dragMouseDown(e) {

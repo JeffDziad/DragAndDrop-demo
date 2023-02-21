@@ -13,8 +13,8 @@
 }
 
 .snap-area {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     background-color: blue;
     margin: 10px;
     overflow: hidden;

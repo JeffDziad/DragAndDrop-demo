@@ -1,3 +1,7 @@
+// NOTES:
+// 1. SCROLL NOT BEING ACCOUNTED FOR - results in draggables not being position correctly when dropped/picked up.
+
+
 let draggables = [];
 
 function initializeDraggables() {
