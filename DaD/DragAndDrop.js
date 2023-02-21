@@ -1,8 +1,9 @@
+let draggables = [];
 
 function initializeDraggables() {
     let elements = Utils.classElements("draggable");
     for(let i = 0; i < elements.length; i++) {
-        createDraggable(elements[i]);
+        draggables.push(new Draggable(elements[i]));
     }
 }
 
@@ -16,6 +17,12 @@ function initializeSnapAreas() {
 function init() {
     initializeDraggables();
     initializeSnapAreas();
+
+    document.addEventListener("click", () => {
+        for(let drag of draggables) {
+            drag.recalibrateLocation();
+        }
+    });
 }
 
 window.onload = init;

@@ -1,3 +1,5 @@
+// OLD IMPLEMENTATION
+
 function createDraggable(element) {
     let x1 = 0;
     let x2 = 0;
@@ -8,10 +10,9 @@ function createDraggable(element) {
     element.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
-        console.log(element.getBoundingClientRect().width);
+        document.getElementsByClassName("drag-area")[0].appendChild(element);
         element.style.position = "absolute";
-        element.style.left = (e.clientX - element.getBoundingClientRect().width/2) + "px";
-        element.style.top = (e.clientY - element.getBoundingClientRect().height/2) + "px";
+
 
         e = e || window.event;
         e.preventDefault();
@@ -36,10 +37,10 @@ function createDraggable(element) {
             let box = a.getBoundingClientRect();
             if(Utils.isRectPointIntersect(box.left, box.top, box.width, box.height, x3, x4)) {
                 // intersection
-                console.log("1: ", a.offsetLeft, a.offsetTop);
                 a.appendChild(element);
                 element.style.position = "static";
-                console.log("2: ", a.offsetLeft, a.offsetTop);
+                element.style.top = element.getBoundingClientRect().top + "px";
+                element.style.left = element.getBoundingClientRect().left + "px";
 
                 // dropY = a.offsetTop;
                 // dropX = a.offsetLeft;
